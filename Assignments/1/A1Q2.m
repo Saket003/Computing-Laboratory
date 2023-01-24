@@ -9,10 +9,11 @@ a = input("");
 func = @(x) a*x - 1;
 deriv = @(x) a;
 start = 0;
-e = 0.001;
-it = 10000;
-root = Newton(func,deriv,start,e,it);
-disp(root);
+e = 0.0001;
+
+root = Newton(func,deriv,start,e);
+disp("a) x = 1/a = "+root);
+
 
 %{
 (b)
@@ -28,15 +29,21 @@ Substitute y as f(x)
 
 y = @(x) 20-x;
 func = @(x) (x+x^0.5)*(y(x)+y(x)^0.5)-155.55;
-%TODO - Add derivative function, start
+deriv = @(x)(1 + 1/(2*sqrt(x)))*(20-x + sqrt(20-x)) - (x + sqrt(x))*(1 + 1/(2*sqrt(20-x)));
+start = 5; %derivative DNE at 0 and 20, and is 0 at 10%
 e = 10^(-8);
+root = Newton(func,deriv,5,e);
+format long;
+disp("b) numbers are: ");
+disp(root);
+disp(20 - root);
 
 
-function root = Newton(func,deriv,start,e,it)
+function root = Newton(func,deriv,start,e)
 root = 0;
 last_root = start;
 
-for c = 1:it
+while true
     root = last_root - func(last_root)/deriv(last_root);
     if abs(root-last_root)<e 
         break
