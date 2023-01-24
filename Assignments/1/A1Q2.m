@@ -34,7 +34,7 @@ start = 5; %derivative DNE at 0 and 20, and is 0 at 10%
 e = 10^(-8);
 root = Newton(func,deriv,5,e);
 format long;
-disp("b) numbers are: ");
+disp("b) Numbers are: ");
 disp(root);
 disp(20 - root);
 
