@@ -4,11 +4,22 @@ s = 0.1;
 func = @(x) tanh(x);
 deriv = @(x) sech(x)*sech(x);
 
-[r2,i3] = hybrid(func,deriv,a,b,s,0.001) %precise 0 and lesser iterations unless we have good estimate of root
+%Hybrid Method
+[r3,i3] = hybrid(func,deriv,a,b,s,0.001); %precise 0 and lesser iterations unless we have good estimate of root
+disp("Root: "+r3+", Iterations: "+i3);
 
-[r1,i1] = bisection(func,a,b,0.001)
-[r2,i2] = Newton(func,deriv,(a+b)/2,0.001)
-[r3,i3] = Newton(func,deriv,0.25,0.001) %need to fix start so converges - then may be quicker?
+%(a)
+[r2,i2] = Newton(func,deriv,(a+b)/2,0.001);
+disp("Root: "+r2+", Iterations: "+i2); %missing due to NaN
+[r2,i2] = Newton(func,deriv,0.25,0.001);
+disp("Root: "+r2+", Iterations: "+i2);
+%Here, it may take lesser iterations but may also diverge - less safe and
+%the number of iterations is dependent upon initial point.
+
+%(b)
+[r1,i1] = bisection(func,a,b,0.001);
+disp("Root: "+r1+", Iterations: "+i1);
+%Hybrid method takes considerably lesser iterations
 
 function [root,it] = hybrid(func,deriv,xl,xu,s,e)
     a = xl;
@@ -35,12 +46,14 @@ function [root,it] = hybrid(func,deriv,xl,xu,s,e)
     it = it + i;
 end
 
-function [root,it] = bisection(poly,xl,xu,tolerance)
+function [root,it] = bisection(poly,xl,xu,e)
 it = 0;
+xrold = NaN;
+
 while (poly(xl)*poly(xu))<0
     it = it+1;
     xrnew = (xl+xu)/2;
-    if poly(xrnew)<tolerance && poly(xrnew)>-1*tolerance
+    if abs(xrnew-xrold)<e
         root = xrnew;
         break
     end
@@ -52,6 +65,7 @@ while (poly(xl)*poly(xu))<0
         xu = xrnew;
         continue
     end
+    xrold = xrnew;
 end
 end
 
