@@ -4,7 +4,6 @@ all derivatives f1(x),f2(x),...f(m-1)(x) will have xo as a root, and
 f(m)(x) will not have xo as a root.
 %}
 clc
-
 f = @(x) 27*x.^4 + 162*x.^3 - 180*x.^2 + 62*x - 7;
 f1 = @(x) 108*x.^3 + 486*x.^2 -360*x + 62;
 f2 = @(x) 324*x.^2 + 972*x - 360;
