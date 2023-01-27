@@ -1,3 +1,6 @@
+clc
+format long
+
 a = -10;
 b = 15;
 s = 0.1;
@@ -13,13 +16,17 @@ disp("Root: "+r3+", Iterations: "+i3);
 disp("Root: "+r2+", Iterations: "+i2); %missing due to NaN
 [r2,i2] = Newton(func,deriv,0.25,0.001);
 disp("Root: "+r2+", Iterations: "+i2);
-%Here, it may take lesser iterations but may also diverge - less safe and
-%the number of iterations is dependent upon initial point.
+%{
+Here, it may take lesser iterations but also has a greater chance to 
+diverge if the intersection with real line crosses the point of
+inflection. Initial point in Hybrid method while following Newton's
+convergence is closer to the root.
+%}
 
 %(b)
 [r1,i1] = bisection(func,a,b,0.001);
 disp("Root: "+r1+", Iterations: "+i1);
-%Hybrid method takes considerably lesser iterations
+%Hybrid method takes considerably lesser iterations then bisection.
 
 function [root,it] = hybrid(func,deriv,xl,xu,s,e)
     a = xl;
@@ -80,7 +87,7 @@ while true
         break
     end
     iter = iter+1;
-    if abs(root-last_root)<e 
+    if abs((root-last_root))<e  %Absolute error used since root = 0
         break
     end
     last_root = root;
