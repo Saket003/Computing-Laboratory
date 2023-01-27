@@ -46,7 +46,7 @@ last_root = start;
 
 while true
     root = last_root - divisionFunc(last_root);
-    if abs(root-last_root)/root<e 
+    if abs(root-last_root)/root<e %relative error for termination%
         break
     end
     last_root = root;
