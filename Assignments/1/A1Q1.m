@@ -2,6 +2,7 @@ func = @(x) (x-4)^2 *(x+2); %given function%
 
 [r1,i1] = falsePosition(func,-2.5,-1,0.001);
 root = r1;
+format long;
 disp(root);
 
 
