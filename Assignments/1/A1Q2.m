@@ -67,7 +67,7 @@ last_root = start;
 
 while true
     root = last_root - divisionFunc(last_root);
-    if abs(root-last_root)/root<e %relative error for termination%
+    if abs((root-last_root)/root)<e %relative error for termination%
         break
     end
     last_root = root;
@@ -79,7 +79,7 @@ last_root = start;
 
 while true
     root = last_root - func(last_root)/deriv(last_root);
-    if abs(root-last_root)/root<e 
+    if abs((root-last_root)/root)<e 
         break
     end
     last_root = root;
