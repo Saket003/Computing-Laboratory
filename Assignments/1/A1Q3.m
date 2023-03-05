@@ -30,7 +30,7 @@ hold("off")
 
 %Using Newton's method
 start = 0;
-e = 10^-4;
+e = 10^-8;
 it = 1000000000;
 r = Newton_mute(f,f1,start,e,it);
 r1 = Newton_mute(f1,f2,start,e,it);
