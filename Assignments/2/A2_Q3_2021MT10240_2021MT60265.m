@@ -3,10 +3,10 @@
 %
 A = [4,1,-1;2,7,1;1,-3,12];
 b = [3,19,31];
-%ans1 = Jacobi(A,b,0,0,0,100);
+ans1 = Jacobi(A,b,0,0,0,100);
 disp('3(a)')
 disp("x1 x2 x3 = ");
-%disp(ans1);
+disp(ans1);
 %end of 3(a)%
 
 % 3(b) %
