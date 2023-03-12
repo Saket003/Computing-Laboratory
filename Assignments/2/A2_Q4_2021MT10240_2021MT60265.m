@@ -37,7 +37,7 @@ for it = 1:1000
         disp("Diverging");
         break;
     end
-    if (abs(xold(1) - xnew(1))/xnew(1) < 0.001)
+    if (abs(xold(1) - xnew(1))/xnew(1) < 0.000001)
         if((abs(xold(2) - xnew(2))/xnew(2) < 0.001) && (abs(xold(3) - xnew(3))/xnew(3) < 0.001))
             disp("a = "+xnew(1));
             disp("b = "+xnew(2));
@@ -48,6 +48,7 @@ for it = 1:1000
     xold = xnew;
 end
 
+disp(T\V);
 %Matches result from backhand op T\V
 
 %Relevant Functions - 
