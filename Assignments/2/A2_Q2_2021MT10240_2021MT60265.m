@@ -2,25 +2,15 @@ A = rand(10);
 B = rand(10,1);
 
 %{
-Few testcases
-A = [3 -0.1 -0.2; 0.1 7 -0.3; 0.3 -0.2 10];
-B = [7.85;-19.3;71.4];
-Slight round off error from direct operation
-Ref.: Numerical Methods for Engineers
+Note - 
+Not all matrices are LU decomposible, and so solution
+from dollittle factorization may not always be correct for such matrices.
+If partial pivoting is implemented, solution may be found.
+But even if A is invertible the algorithm may fail.
 
-Testcase from Q1:
-A = [9 3 2 0 7;7 6 9 6 4;2 7 7 8 2;0 9 7 2 2;7 3 6 4 3];
-B = [35;58;53;37;39];
-Lots of changes - Possibly why partial pivoting is required
-
-Maybe issue in code - 
-A = randi(100,10);
-B = randi(100,10,1);
-Which has only integral coefficients, however, still quite a considerable
-deviation from result.
-
-Very different in rand() case, possible since errors can scale up with
-values close to 0.
+Example of a case where LU decomposition fails, but passes with pivoting is
+A = [0 1;2 1];
+B = [2;4];
 %}
 
 %(a)
@@ -33,6 +23,13 @@ disp(x);
 x2 = A\B;
 disp(x2);
 
+%(a) with pivoting
+[A,B] = pivot(A,B);      %Assumption made - Will atleast be pivotable
+A_LU = doolittle_factorization(A);
+d = forward_subst(A_LU,B);      %LD = B
+x = backward_subst(A_LU,d);     %UX = D
+disp(x);
+
 %Relevant Functions - 
 function A = doolittle_factorization(A)
     [n,m] = size(A);
@@ -43,6 +40,32 @@ function A = doolittle_factorization(A)
             A(j,i) = f;
         end
     end
+end
+
+function [A_new,B_new] = pivot(A,B)
+    [n,m] = size(A);
+    for i = 1:n
+        max_row = i;
+        max = A(i,i);
+        for j = i+1:n
+            if(A(j,i)>max)
+                max = A(j,i);
+                max_row = j;
+            end
+        end
+        row1 = A(i,:);
+        row2 = A(max_row,:);
+
+        temp = B(max_row);
+        B(max_row) = B(i);
+        B(i) = temp;
+        for k = 1:m
+            A(i,k) = row2(1,k);
+            A(max_row,k) = row1(1,k);
+        end
+    end
+    A_new = A;
+    B_new = B;
 end
 
 function D = forward_subst(A_LU,B)
