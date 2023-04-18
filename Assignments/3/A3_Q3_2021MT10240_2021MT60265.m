@@ -28,3 +28,27 @@ end
 
 disp(area);
 disp(n);
+
+function area = Mid(f,a,b,n)
+delx = (b-a)/n;
+sum = 0;
+for i = 1:n
+    buff = f(a + ((2*i-1)*delx)/2);
+    sum = sum + buff;
+end
+area = sum * delx;
+end
+
+function area = oneThirdSimp(f,a,b,n)
+delx = (b-a)/n;
+sum = f(a)+f(b);
+for i = 1:n-1
+    buff = f(a+i*delx);
+    if mod(i, 2) == 1
+        sum = sum + 4*buff;
+    else
+        sum = sum + 2*buff;
+    end
+end
+area = sum * delx/3;
+end
