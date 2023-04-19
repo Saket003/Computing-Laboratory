@@ -1,3 +1,4 @@
+format long;
 %(a)
 f = @(x)exp(x)/(1+x);
 a = 0;
@@ -19,11 +20,11 @@ f = @(x) sin(x);
 
 while true
     area = Mid(f,a,b,n);
-    n = n+1;
     if ((past_area-area)/area) < tol
         break;
     end
     past_area = area;
+    n = n+1;
 end
 
 disp(area);

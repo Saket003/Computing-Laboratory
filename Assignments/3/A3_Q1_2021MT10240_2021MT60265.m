@@ -1,4 +1,5 @@
 f = @(x) 1/(1+x^2);
+format long;
 
 %(a)
 area_a = Traps(f,-4,4,1);

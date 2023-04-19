@@ -1,5 +1,6 @@
 past_area = 10;
 area = 0;
+format long;
 
 tol = 1e-6;
 a = 0;
@@ -9,11 +10,11 @@ f = @(x) 1/(1+x^2);
 
 while true
     area = Mid(f,a,b,n);
-    n = n+1;
     if ((past_area-area)/area) < tol
         break;
     end
     past_area = area;
+    n = n+1;
 end
 disp(area);
 disp(n);
