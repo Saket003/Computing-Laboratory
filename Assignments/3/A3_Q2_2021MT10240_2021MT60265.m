@@ -1,3 +1,6 @@
+% The adaptive algorithm used here starts with n = 3 and increases n by 1
+% until a relative difference of given tolerance is reached
+
 past_area = 10;
 area = 0;
 format long;
@@ -6,7 +9,7 @@ tol = 1e-6;
 a = 0;
 b = 1;
 n = 3;
-f = @(x) 1/(1+x^2);
+f = @(x) 1/(1+x^2); % given function
 it = 0;
 
 while true
@@ -18,9 +21,12 @@ while true
     past_area = area;
     n = n+1;
 end
-disp(area);
-disp(it);
+areastring = sprintf('%0.10f',area);
+disp("Computed area = "+areastring+" iterations taken = " + it);
+%disp(area);
+%disp(it);
 
+%implementation of midpoint rule%
 function area = Mid(f,a,b,n)
 delx = (b-a)/n;
 sum = 0;
