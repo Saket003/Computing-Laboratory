@@ -6,7 +6,7 @@ area_a = Traps(f,-4,4,1);
 disp(area_a);
 
 %(b)
-area_b = oneThirdSimp(f,-4,4,1);
+area_b = oneThirdSimp(f,-4,4,2);
 disp(area_b);
 
 %(c)

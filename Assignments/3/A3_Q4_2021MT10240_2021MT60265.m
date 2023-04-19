@@ -12,7 +12,7 @@ while true
         break;
     end
     past_area = area;
-    n = n+2;
+    n = n+1;
 end
 disp(area);
 
