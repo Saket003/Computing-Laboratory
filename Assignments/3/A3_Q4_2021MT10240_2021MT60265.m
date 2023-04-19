@@ -12,10 +12,9 @@ while true
         break;
     end
     past_area = area;
-    n = n+1;
+    n = n+2;
 end
 disp(area);
-disp(n);
 
 function area = Traps(f,a,b,n)
 delx = (b-a)/n;
