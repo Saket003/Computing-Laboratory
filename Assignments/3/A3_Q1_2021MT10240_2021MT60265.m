@@ -3,14 +3,17 @@ format long;
 
 %(a)
 area_a = Traps(f,-4,4,1);
+disp('a)');
 disp(area_a);
 
 %(b)
 area_b = oneThirdSimp(f,-4,4,2);
+disp('b)');
 disp(area_b);
 
 %(c)
 area_c1 = Traps(f,-4,4,10);
+disp('c)');
 disp(area_c1);
 area_c2 = oneThirdSimp(f,-4,4,10);
 disp(area_c2);
