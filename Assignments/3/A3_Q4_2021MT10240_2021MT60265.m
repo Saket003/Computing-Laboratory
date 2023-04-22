@@ -1,6 +1,7 @@
 format long;
 
 f = @(x)sin(x)/x;
+past_area = 10;
 a = 0;
 b = 10;
 tol = 1e-6;
