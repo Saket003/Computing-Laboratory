@@ -1,6 +1,7 @@
 format long;
 
 f = @(x)sin(x)/x;
+past_area = 10;
 a = 0;
 b = 10;
 tol = 1e-6;
@@ -12,7 +13,7 @@ while true
         break;
     end
     past_area = area;
-    n = n+1;
+    n = n+5;
 end
 disp('Calculated definite integral =')
 disp(area);
