@@ -6,7 +6,9 @@ b = 2;
 n = 4;
 
 area = oneThirdSimp(f,a,b,n);
-disp(area);
+disp('a)');
+areastring = sprintf('%0.10f',area);
+disp("Definite integral using 1/3 rule = "+areastring);
 
 %(b)
 past_area = 10;
@@ -29,8 +31,11 @@ while true
     n = n+3;
 end
 
-disp(area);
-disp(it);
+areastring = sprintf('%0.10f',area);
+disp('b)')
+disp("Computed approximate area = "+areastring+" iterations taken = " + it);
+%disp(area);
+%disp(it);
 
 function area = threeEighthSimp(f,a,b,n)
 delx = (b-a)/n;
